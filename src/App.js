@@ -14,7 +14,8 @@ function App() {
         <Route exact path="/" component={navLink} />
         <Route path="/book" component={Book} />
         <Route path="/movie" component={Movie} />
-        <Route path="/movie/:id/quotes" component={movieQuote} />
+        {/* <Route path="/movie/:id/moviequote" component={movieQuote} /> */}
+        <Route path="/moviequote/:id" component={movieQuote} />
         <Route path="/character" component={Character} />
       </Router>
 

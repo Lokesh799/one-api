@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { viewBook, viewMovie, viewMovieQuote, viewCharacter } from '../actions';
 
+
 const client = axios.create({
   baseURL: `https://the-one-api.dev/v2`,
 });
@@ -16,10 +17,16 @@ export const bookRequest = () => async (dispatch) => {
   }
 }
 
-export const movieRequest = () => async (dispatch) => {
+export const movieRequest = (prevFilters) => async (dispatch) => {
   try {
-    const response = await client.get('/movie');
-    dispatch(viewMovie(response.data.docs));
+    const params = {
+      budgetInMillions: prevFilters.limits,
+
+    };
+
+    console.log("value", params.budgetInMillions)
+    const { data: { docs } } = await client.get(`/movie?budgetInMillions<${params.budgetInMillions}`,);
+    dispatch(viewMovie({ movieFilter: docs }));
   } catch (err) {
     console.log(err);
   }
