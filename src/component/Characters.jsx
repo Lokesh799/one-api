@@ -2,7 +2,7 @@ import React, { useEffect, } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { characterRequest } from "../thunk/getBook";
+import { characterRequest } from "../thunk/characterApi";
 
 function Character(props) {
   const dispatch = useDispatch();
@@ -41,6 +41,11 @@ function Character(props) {
           </tbody>
         </table>
       </div>
+      <select name="limit" value>
+        <option value={5}>5</option>
+        <option value={10}>10</option>
+        <option value={15}>15</option>
+      </select>
     </>
   );
 }

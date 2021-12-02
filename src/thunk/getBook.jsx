@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { viewBook, viewMovie, viewMovieQuote, viewCharacter } from '../actions';
+import { viewBook, viewMovie, viewMovieQuote } from '../actions';
 
 
 const client = axios.create({
@@ -23,9 +23,9 @@ export const movieRequest = (prevFilters) => async (dispatch) => {
       budgetInMillions: prevFilters.limits,
 
     };
-
+    
     console.log("value", params.budgetInMillions)
-    const { data: { docs } } = await client.get(`/movie?budgetInMillions<${params.budgetInMillions}`,);
+    const { data: { docs } } = await client.get(`/movie?budgetInMillions<${params}`,);
     dispatch(viewMovie({ movieFilter: docs }));
   } catch (err) {
     console.log(err);
@@ -42,11 +42,3 @@ export const movieQuoteRequest = (id) => async (dispatch) => {
   }
 }
 
-export const characterRequest = () => async (dispatch) => {
-  try {
-    const response = await client.get('/character');
-    dispatch(viewCharacter(response.data.docs));
-  } catch (err) {
-    console.log(err);
-  }
-}

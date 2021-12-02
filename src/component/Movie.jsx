@@ -8,7 +8,6 @@ function Movie(props) {
   const dispatch = useDispatch();
   const viewmovies = useSelector((state) => state.viewMovie.movieFilter.movieFilter);
   const filters = useSelector((state) => state.viewMovie.movieFilter.filters);
-  console.log("i am filter", filters)
 
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -55,7 +54,6 @@ function Movie(props) {
                   <td >{movie._id}</td>
                   <td >{movie.runtimeInMinutes}</td>
                   <td >{movie.budgetInMillions}</td>
-
                   <td>
                     <Link className='btn btn-primary' to={`/moviequote/${movie._id}`}>view Movie quote</Link>
                   </td>
@@ -63,6 +61,8 @@ function Movie(props) {
               ))}
           </tbody>
         </table>
+      </div>
+      <div>
       </div>
     </>
   );
